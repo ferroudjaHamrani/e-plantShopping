@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from './CartSlice';
+
 import CartItem from './CartItem';
 function ProductList({ onHomeClick }) {
     const dispatch = useDispatch();
@@ -263,7 +266,15 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
-
+    const handleAddToCart = (plant) => {
+        dispatch(addItem({
+            name: plant.name,
+            cost: plant.cost,
+            image: plant.image
+        }));
+    };
+    
+    
     return (
         <div>
             <div className="navbar" style={styleObj}>
